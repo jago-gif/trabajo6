@@ -16,13 +16,13 @@ public class Main {
 
 
         
-        System.out.println("Bienvenido a nuestra tienda escoja una opcion");
+        System.out.println("Bienvenido a nuestra tienda, seleccione una opcion:");
 
 
         do {
-            System.out.println("[1]      agregar producto");
-            System.out.println("[2]      agregar venta");
-            System.out.println("[3]      ventas del dia");
+            System.out.println("[1]      Agregar producto");
+            System.out.println("[2]      Agregar venta");
+            System.out.println("[3]      Ventas del dia");
             System.out.println("[0]      Salir");
             menu = opcionNum(scan);
            switch (menu){
@@ -45,7 +45,7 @@ public class Main {
                    boolean bstock = false;
                    boolean pagado = false;
                    verProductos(listaProductos);
-                   System.out.println("escriba el id del producto que desea comprar");
+                   System.out.println("Escriba el ID del producto que desea comprar");
                    id=opcionNum(scan);
                    for(int i=0; i<listaProductos.size();i++) {
                 	   if(id==listaProductos.get(i).getIdProducto()) {
@@ -54,21 +54,21 @@ public class Main {
                 		   valor=listaProductos.get(i).getValor();
                 		   stock=listaProductos.get(i).getStock();
                 		   while(!bstock) {
-                    		   System.out.println("cantidad de "+nombre+" necesita");
+                    		   System.out.println("Cantidad de "+nombre+" que necesita");
                 			   cantidad=opcionNum(scan);
                 			   if(cantidad>stock) {
-                				   System.out.println("Lo sentimos no tenemos suficiente Stock");
+                				   System.out.println("Lo sentimos, no tenemos suficiente stock");
                 			   }else {
                 				   stock= stock-cantidad;
-                				   System.out.println("Escoja el medio de pago");
+                				   System.out.println("Seleccione el medio de pago");
                 				   System.out.println("Efectivo               [1]");
-                				   System.out.println("Tarjeta de Credito     [2]");
-                				   System.out.println("Tarjeta de Debito      [3]");
+                				   System.out.println("Tarjeta de Debito      [2]");
+                				   System.out.println("Tarjeta de Credito     [3]");
                 				   while(!pagado) {
                 					   submenu=opcionNum(scan);
                                        if (submenu==1){
-                                           tipoVenta= "efectivo";
-                                           System.out.println("su compra en"+ tipoVenta+ "a finalizado exitosamente");
+                                           tipoVenta= "Efectivo";
+                                           System.out.println("Su compra en "+ tipoVenta+ " ha finalizado exitosamente");
                                            Producto modificadorStock = new Producto(id, nombre, valor,stock);
                             			   listaProductos.set(id, modificadorStock); 
                                            listaVenta.add(new Venta(id,nombre,valor,tipoVenta,cantidad));
@@ -76,16 +76,16 @@ public class Main {
                             			   pagado=true;
 
                                        }else if (submenu==2){
-                                           tipoVenta= "Tarjeta Debito";
-                                           System.out.println("su compra en"+ tipoVenta+ "a finalizado exitosamente");
+                                           tipoVenta= "Tarjeta de debito";
+                                           System.out.println("Su compra en "+ tipoVenta+ " ha finalizado exitosamente");
                                            Producto modificadorStock = new Producto(id, nombre, valor,stock);
                             			   listaProductos.set(id, modificadorStock); 
                                            listaVenta.add(new Venta(id,nombre,valor,tipoVenta,cantidad));
                                            bstock=true;
                             			   pagado=true;
                                        		}else if (submenu==3){
-                                           tipoVenta= "Tarjeta Credito";
-                                           System.out.println("su compra en"+ tipoVenta+ "a finalizado exitosamente");
+                                           tipoVenta= "Tarjeta de credito";
+                                           System.out.println("Su compra en "+ tipoVenta+ " ha finalizado exitosamente");
                                            Producto modificadorStock = new Producto(id, nombre, valor,stock);
                             			   listaProductos.set(id, modificadorStock); 
                                            listaVenta.add(new Venta(id,nombre,valor,tipoVenta,cantidad));
@@ -110,14 +110,15 @@ public class Main {
                case OPCION_MENU_VER_VENTAS -> {
             	   int acumulador=0;
                    for (int i=0; i<listaVenta.size();i++){
-                       System.out.println(listaVenta.get(i).mostrar()+" total pagado "+ listaVenta.get(i).getCantidad()*
+                       System.out.println(listaVenta.get(i).mostrar()+" Total pagado: "+ listaVenta.get(i).getCantidad()*
                     		   listaVenta.get(i).getValor());
                    }
 
                    for (int i=0; i<listaVenta.size();i++){
                 	   acumulador += listaVenta.get(i).getCantidad()*listaVenta.get(i).getValor();
                    }
-                   System.out.println("el total de ventas del día es de "+acumulador);
+                   System.out.println("El total de ventas del día es de "+acumulador);
+                   System.out.println("---------------------------------------");
                }
            }
        }while (menu !=OPCION_MENU_SALIR);
@@ -134,13 +135,13 @@ public class Main {
 		String nombre;
 		int valor;
 		int stock;
-		System.out.println("escriba el nombre del producto");
+		System.out.println("Escriba el nombre del producto");
 		   nombre=validarVacio(scan,ingresa);
 		   System.out.println(nombre);
-		   System.out.println("ingrese valor del producto");
+		   System.out.println("Ingrese el valor del producto");
 		   valor=opcionNum(scan);
 		   System.out.println(valor);
-		   System.out.println("ingrese el stock del producto");
+		   System.out.println("Ingrese el stock del producto");
 		   stock=opcionNum(scan);
 		   System.out.println(stock);
 		   listaProductos.add(new Producto(nombre, valor, stock)) ;
@@ -168,7 +169,7 @@ public class Main {
         while (!bandera){
             ingresa = scan.nextLine().toUpperCase();
             if (ingresa == "") {
-                System.out.println("debe ingresar algun dato");
+                System.out.println("Debe ingresar algun dato");
             } else bandera = true;
         }
         return ingresa;

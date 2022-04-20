@@ -38,8 +38,8 @@ public class Venta extends Producto {
 
         @Override
         public String mostrar() {
-                return "se vendio la cantidad de  "+cantidad+" productos y se cancelo por medio de "
-                		+ ""+tipoVenta+" "+super.mostrar();
+                return "Se vendio la cantidad de "+cantidad+" productos, se cancelo por medio de "
+                		+ " "+tipoVenta+"\n"+super.mostrar();
         }
 }
 

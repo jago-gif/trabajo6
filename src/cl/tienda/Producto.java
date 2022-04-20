@@ -76,7 +76,7 @@ public class Producto {
 
     public static int sum = 0;
     public String mostrar(){
-        return "nombre "+nombre+" valor "+valor;
+        return "Nombre: "+nombre+" Valor: "+valor;
     }
 
 }
